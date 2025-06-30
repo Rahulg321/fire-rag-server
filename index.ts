@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import createBotRouter from "./routes/create-bot";
+import botsRouter from "./routes/bots";
 
 const app = express();
 
@@ -8,14 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "Hello World" });
-});
-
-app.get("/health", (req, res) => {
-  res.status(200).json({ message: "OK" });
-});
-
+app.use("/bots", botsRouter);
 app.use("/create-bot", createBotRouter);
 
 const port = parseInt(process.env.PORT || "8080");
