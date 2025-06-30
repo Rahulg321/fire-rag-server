@@ -7,7 +7,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-  SERVICE_NAME: fire-rag-server
+  SERVICE_NAME: botbee-server
   REGION: us-central1
 
 jobs:
@@ -36,13 +36,13 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t us-central1-docker.pkg.dev/${{ env.PROJECT_ID }}/fire-rag-server/fire-rag-server:${{ github.sha }} .
-          docker push us-central1-docker.pkg.dev/${{ env.PROJECT_ID }}/fire-rag-server/fire-rag-server:${{ github.sha }}
+          docker build -t us-central1-docker.pkg.dev/${{ env.PROJECT_ID }}/botbee-server/botbee-server:${{ github.sha }} .
+          docker push us-central1-docker.pkg.dev/${{ env.PROJECT_ID }}/botbee-server/botbee-server:${{ github.sha }}
 
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy ${{ env.SERVICE_NAME }} \
-            --image us-central1-docker.pkg.dev/${{ env.PROJECT_ID }}/fire-rag-server/fire-rag-server:${{ github.sha }} \
+              --image us-central1-docker.pkg.dev/${{ env.PROJECT_ID }}/botbee-server/botbee-server:${{ github.sha }} \
             --platform managed \
             --region ${{ env.REGION }} \
             --allow-unauthenticated \
