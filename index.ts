@@ -12,6 +12,10 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Hello World" });
 });
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ message: "OK" });
+});
+
 app.use("/create-bot", createBotRouter);
 
 const port = parseInt(process.env.PORT || "8080");
