@@ -46,5 +46,5 @@ jobs:
             --platform managed \
             --region ${{ env.REGION }} \
             --allow-unauthenticated \
-            --set-env-vars "POSTGRES_URL=${{ secrets.POSTGRES_URL }}, AUTH_SECRET=${{ secrets.AUTH_SECRET }}, AI_API_KEY=${{ secrets.AI_API_KEY }}, GOOGLE_GEMINI_AI_KEY=${{ secrets.GOOGLE_GEMINI_AI_KEY }},EXA_AI_API_KEY=${{ secrets.EXA_AI_API_KEY }},OPENAI_API_KEY=${{ secrets.AI_API_KEY }},PERPLEXITY_AI_API_KEY=${{ secrets.PERPLEXITY_AI_API_KEY }}, NODE_ENV=production" \
+            --set-env-vars "POSTGRES_URL=${{ secrets.POSTGRES_URL }}, AUTH_SECRET=${{ secrets.AUTH_SECRET }}, AI_API_KEY=${{ secrets.AI_API_KEY }}, GOOGLE_GEMINI_AI_KEY=${{ secrets.GOOGLE_GEMINI_AI_KEY }},EXA_AI_API_KEY=${{ secrets.EXA_AI_API_KEY }},OPENAI_API_KEY=${{ secrets.AI_API_KEY }},PERPLEXITY_AI_API_KEY=${{ secrets.PERPLEXITY_AI_API_KEY }}, NODE_ENV=production, FIRECRAWL_AI_API_KEY=${{ secrets.FIRECRAWL_AI_API_KEY }}" \
             --timeout=900s
