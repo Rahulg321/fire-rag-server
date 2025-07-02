@@ -19,10 +19,6 @@ router.post(
   authenticateToken,
   upload.fields([{ name: "dataFile" }]),
   async (req: Request, res: Response) => {
-    console.log("=== CREATE BOT REQUEST ===");
-    console.log("Request Body:", req.body);
-    console.log("Files:", req.files);
-
     const finalData = {
       ...req.body,
       url: req.body.url,
@@ -42,14 +38,16 @@ router.post(
     }
 
     let insertedBot;
+
     try {
       console.log("creating bot document");
       const [insertedOperationBot] = await db
         .insert(bot)
         .values({
-          name: validatedData.dataFileTitle,
+          name: validatedData.name,
           description: validatedData.dataFileDescription,
           avatar: validatedData.avatar,
+          tone: validatedData.tone,
           greeting: validatedData.greeting,
           urls: validatedData.url ? [validatedData.url] : [],
           instructions: validatedData.instructions,
@@ -105,6 +103,8 @@ router.post(
             name: `Website ${validatedData.url}`,
             description: "Website content",
             kind: "url",
+            userId: validatedData.userId,
+            fileSize: "0",
           })
           .returning();
 
@@ -149,6 +149,8 @@ router.post(
           name: validatedData.dataFileTitle,
           description: validatedData.dataFileDescription,
           kind: kind as any,
+          userId: validatedData.userId,
+          fileSize: validatedData.dataFile?.size.toString() || "0",
         })
         .returning();
 
