@@ -168,7 +168,6 @@ router.post(
       return;
     }
 
-    console.log("=== END CREATE BOT REQUEST ===");
     res.status(200).json({ message: "Bot created successfully" });
   }
 );

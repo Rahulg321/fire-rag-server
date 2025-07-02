@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import createBotRouter from "./routes/create-bot";
 import botsRouter from "./routes/bots";
+import addBotResourceRouter from "./routes/add-bot-resource";
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(cors());
 
 app.use("/bots", botsRouter);
 app.use("/create-bot", createBotRouter);
+app.use("/add-bot-resource", addBotResourceRouter);
 
 const port = parseInt(process.env.PORT || "8080");
 
